@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎙Speech Recogniser🎙</title>
+
+    <style>
+        #myVideo {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+        }
+        
+        #Head {
+            position: relative;
+            display: flex;
+            font-family: cursive;
+            font-size: larger;
+            color: rgb(255, 255, 255);
+            line-height: 1.5em;
+            word-spacing: 0.01em;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-content: stretch;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .dvsn {
+            position: relative;
+            text-align: center;
+            color: rgb(255, 20, 4);
+            text-decoration: underline;
+        }
+        
+        form {
+            position: relative;
+            padding: 10px;
+        }
+        
+        form input {
+            background-color: rgb(97, 88, 88);
+            border-radius: 10px;
+            color: black;
+            border: solid;
+            width: 30%;
+            box-shadow: rgba(203, 243, 128, 0.24) 0 2px 2px, rgba(201, 160, 132, 0.4) 0 8px 12px;
+            border-color: rgba(0, 174, 255, 0.377);
+        }
+        
+        form button {
+            position: relative;
+            margin-top: 20px;
+            background-color: initial;
+            background-image: linear-gradient(rgba(198, 126, 231, 0.84), rgba(87, 39, 151, 0.84) 50%);
+            border-radius: 42px;
+            border-width: 0;
+            box-shadow: rgba(57, 31, 91, 0.24) 0 2px 2px, rgba(179, 132, 201, 0.4) 0 8px 12px;
+            color: #ffdddd;
+            cursor: pointer;
+            font-family: Quicksand, sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: .05em;
+            margin: auto;
+            margin-top: 25px;
+            margin-bottom: 5px;
+            padding: 20px 20px;
+            text-shadow: rgba(255, 255, 255, 0.4) 0 0 4px, rgba(255, 255, 255, 0.2) 0 0 12px, rgba(57, 31, 91, 0.6) 1px 1px 4px, rgba(57, 31, 91, 0.32) 4px 4px 16px;
+        }
+        
+        form button:hover {
+            background-image: linear-gradient(#e6c6f5, #391F5B 50%);
+            text-shadow: rgba(148, 40, 40, 0.4) 0 0 4px, rgba(255, 255, 255, 0.2) 0 0 12px, rgba(57, 31, 91, 0.6) 1px 1px 4px, rgba(57, 31, 91, 0.32) 4px 4px 16px;
+        }
+        
+        .form_textarea {
+            position: relative;
+            background-color: #c8dbff49;
+            margin: 15px;
+            box-shadow: rgba(203, 243, 128, 0.24) 0 2px 2px, rgba(201, 160, 132, 0.4) 0 8px 12px;
+            height: 10rem;
+            color: yellow;
+            width: 1000px;
+            border: 20px;
+            border-bottom-color: rgb(224, 172, 172);
+            border-radius: 10px;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            font-size: 20px;
+        }
+        
+        cstm {
+            display: inline;
+            font-size: 2em;
+            margin-block-start: 0.67em;
+            margin-block-end: 0.67em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        
+        h2 {
+            font-size: xx-large;
+            font-family: cursive;
+            font-weight: 20000;
+        }
+        
+        #mic {
+            color: rgb(83, 206, 200);
+            font-size: 100px;
+            font-weight: bolder;
+        }
+    </style>
+</head>
+
+<Body>
+    <video id="myVideo" autoplay muted loop>
+        <source src={{ url_for('static' , filename='Black - 13495.mp4')}} type="video/mp4">
+    </video>
+    <div id="Head">
+        <span id="mic">🎙</span>
+        <cstm>Speech Recognizer</cstm><span id="mic">🎙</span>
+    </div>
+    <div class="dvsn">
+        <h2>Upload the file to convert</h2>
+        <form method="post" enctype="multipart/form-data">
+
+            <input type="file" name="file">
+            <br>
+            <button type="submit">Convert</button>
+        </form>
+    </div>
+    {% if transcript!="" %}
+    <div class="dvsn">
+        <h1> Transcript</h1>
+        <textarea class="form_textarea">{{transcript}}</textarea>
+    </div>
+    {% endif %}
+</Body>
+
+</html>
